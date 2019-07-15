@@ -37,7 +37,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-// second page for registration
 public class RegisterTwoActivity extends AppCompatActivity {
 
     EditText Idnumber;
@@ -116,11 +115,11 @@ public class RegisterTwoActivity extends AppCompatActivity {
             }
         });
 
-           btnlogin.setOnClickListener(new View.OnClickListener() {
-             @Override
-                public void onClick(View v) {
-sendData();
-                         }});
+        btnlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendData();
+            }});
 
     }
 
@@ -365,7 +364,7 @@ sendData();
         pDialog = new ProgressDialog(RegisterTwoActivity.this,
                 R.style.Theme_AppCompat_DayNight_DarkActionBar);
         pDialog.setIndeterminate(true);
-        pDialog.setMessage("Submitting  data...");
+        pDialog.setMessage("Sending data...");
         pDialog.setCancelable(false);
 
         showpDialog();
@@ -406,8 +405,8 @@ sendData();
                                 public void onClick(DialogInterface dialog, int id) {
 
                                     Intent intent = new Intent(RegisterTwoActivity.this, RegisterPictureActivity.class);
-                                    intent.putExtra("nameperson",nameofperson);
-                                    intent.putExtra("phone",telephone);
+                                    intent.putExtra("nameofperson",nameofperson);
+                                    intent.putExtra("telephone",telephone);
                                     startActivity(intent);
 
                                 }

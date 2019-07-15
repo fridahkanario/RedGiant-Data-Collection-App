@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingLeft="15dp"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
                 android:hint="Closing stock"
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingLeft="15dp"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
                 android:hint="Lunch Break Out Time"
@@ -111,7 +111,7 @@
         </android.support.v7.widget.AppCompatSpinner>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_team_photo"
+            android:id="@+id/btn_ba_photo"
             android:layout_width="match_parent"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
             />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_save_instore"
             android:layout_width="match_parent"
             android:layout_gravity="center"
             android:layout_height="wrap_content"

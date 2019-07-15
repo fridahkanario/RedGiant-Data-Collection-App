@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:padding="20dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

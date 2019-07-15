@@ -10,7 +10,8 @@
     <ScrollView android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView">
+        android:id="@+id/scrollView"
+        tools:ignore="MissingConstraints">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -37,7 +38,7 @@
             android:paddingLeft="15dp"
             android:textColor="#fff"
             android:textColorHint="#fff"
-            android:hint="Products of focus (Seperated by commas)"
+            android:hint="Products of focus (Seperated by a comma)"
             android:background="@drawable/bg_edittext"
             />
     </android.support.design.widget.TextInputLayout>
@@ -70,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:paddingLeft="15dp"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
                 android:hint="Closing stock"

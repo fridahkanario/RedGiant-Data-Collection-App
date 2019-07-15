@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -57,11 +58,11 @@ import retrofit2.Callback;
 public class InStoreActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText openingstock, closingstock, comments;
+    EditText openingstock, closingstock, comments, lunchtime;
     String routess;
     List<String> list;
     String question;
-    Button btnlogin;
+    Button btn_save_instore, ba_selfie, engagement_photo;
     private ProgressDialog pDialog;
 
     String lat, lon;
@@ -86,9 +87,13 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
 
         openingstock = findViewById(R.id.input_opening_stock);
         closingstock = findViewById(R.id.input_closing_stock);
+        lunchtime = findViewById(R.id.lunch_break_time);
         comments = findViewById(R.id.input_comments);
-        btnlogin = findViewById(R.id.btn_login);
+        btn_save_instore = findViewById(R.id.btn_save_instore);
         routes = findViewById(R.id.route);
+        ba_selfie = findViewById(R.id.btn_ba_photo);
+        engagement_photo = findViewById(R.id.btn_engagement_photo);
+
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -100,6 +105,35 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
                         new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
             }
         }
+
+
+
+
+
+        //Upload photos( BA Selfie and Engagement Photo)
+        ba_selfie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent registerpic = new Intent(InStoreActivity.this, RegisterPictureActivity.class);
+                startActivity(registerpic);
+
+            }
+        });
+
+        engagement_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerpic = new Intent(InStoreActivity.this, RegisterPictureActivity.class);
+                startActivity(registerpic);
+
+            }
+        });
+
+
+
+
+
 
         // we build google api client
         googleApiClient = new GoogleApiClient.Builder(this).
@@ -124,7 +158,7 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
         });
 
 
-        btnlogin.setOnClickListener(new View.OnClickListener() {
+        btn_save_instore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendData();

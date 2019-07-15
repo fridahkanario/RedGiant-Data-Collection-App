@@ -14,15 +14,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.keredgiantaio.techsavanna.redgiantaio.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 //To start project depending on the activity chosen
 public class SingleSweepActivity extends AppCompatActivity  {
     Button startProject;
-    Button location;
-    Button date;
-    Button time;
 
-
-    private GoogleMap mMap;
+// private GoogleMap mMap;
 
     /**
      * Manipulates the map once available.
@@ -38,6 +38,42 @@ public class SingleSweepActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_sweep);
+
+
+//        date = findViewById(R.id.confirm_date);
+//        time = findViewById(R.id.btn_start_Time);
+//
+//      // Show current date and Format
+//        final Date currentdate = Calendar.getInstance().getTime();
+//        SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy ");
+//        final String strDate = formatter.format(currentdate);
+
+
+        //Show current time
+//        Date currentTime = Calendar.getInstance().getTime();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("hh.mm.ss aa");
+//        final String strTime = dateFormat.format(currentTime);
+//
+
+
+//        date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(SingleSweepActivity.this, "Today is on " +strDate, Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//
+//        time.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Toast.makeText(getApplicationContext(),"Start Time Is :" + strTime, Toast.LENGTH_LONG).show();
+//                //Toast.makeText(SingleSweepActivity.this, "Today is on " +currentdate+strDate, Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
 
         startProject = findViewById(R.id.btn_start);
 

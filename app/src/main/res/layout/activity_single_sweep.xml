@@ -17,44 +17,44 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_Location"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="4dp"
-            android:textColor="#fff"
-            android:background="@drawable/bg_login"
-            android:padding="12dp"
-            android:text="Confirm Location"
-            />
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/btn_Location"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/bg_login"-->
+            <!--android:padding="12dp"-->
+            <!--android:text="Confirm Location"-->
+            <!--/>-->
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/confirm_date"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="4dp"
-            android:textColor="#fff"
-            android:background="@drawable/bg_login"
-            android:padding="12dp"
-            android:text="Confirm Date"
-            />
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/confirm_date"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/bg_login"-->
+            <!--android:padding="12dp"-->
+            <!--android:text="Confirm Date"-->
+            <!--/>-->
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_start_Time"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="4dp"
-            android:textColor="#fff"
-            android:background="@drawable/bg_login"
-            android:padding="12dp"
-            android:text="Confirm Start Time"
-            />
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/btn_start_Time"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/bg_login"-->
+            <!--android:padding="12dp"-->
+            <!--android:text="Confirm Start Time"-->
+            <!--/>-->
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_start"
         android:layout_width="match_parent"

@@ -34,11 +34,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
- //Activity to capture the BAs Image
 public class RegisterPictureActivity extends AppCompatActivity {
     //ImageView to display image selected
     ImageView imageView;
-String nameofperson,telephone;
+    String nameofperson,telephone;
     //edittext for getting the tags input
     EditText editTextTags;
     @Override
@@ -47,8 +46,8 @@ String nameofperson,telephone;
         setContentView(R.layout.activity_register_picture);
 
 //initializing views
-        imageView = (ImageView) findViewById(R.id.imageView);
-        editTextTags = (EditText) findViewById(R.id.editTextTags);
+        imageView =  findViewById(R.id.imageView);
+        editTextTags = findViewById(R.id.editTextTags);
         nameofperson=getIntent().getExtras().getString("nameperson");
         telephone=getIntent().getExtras().getString("phone");
         //checking the permission
@@ -127,7 +126,7 @@ String nameofperson,telephone;
         //getting the tag from the edittext
         final String tags = editTextTags.getText().toString().trim();
         final String nameperson=nameofperson;
-       final String phone=telephone;
+        final String phone=telephone;
         //our custom volley request
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, AppConfig.UPLOAD_URL,
                 new Response.Listener<NetworkResponse>() {
