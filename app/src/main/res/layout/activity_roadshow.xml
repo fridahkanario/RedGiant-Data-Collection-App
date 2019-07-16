@@ -104,30 +104,30 @@
 
         </android.support.v7.widget.AppCompatSpinner>
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_team_photo"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="14dp"
-            android:textColor="#fff"
-            android:background="@drawable/bg_login"
-            android:padding="12dp"
-            android:text="Upload Team Photo"
-            />
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_engagement_photo"
-            android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="14dp"
-            android:textColor="#fff"
-            android:background="@drawable/bg_login"
-            android:padding="12dp"
-            android:text="Upload Engagement Photo"
-            />
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/btn_team_photo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:layout_marginTop="14dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/bg_login"-->
+            <!--android:padding="12dp"-->
+            <!--android:text="Upload Team Photo"-->
+            <!--/>-->
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/btn_engagement_photo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:layout_marginTop="14dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:background="@drawable/bg_login"-->
+            <!--android:padding="12dp"-->
+            <!--android:text="Upload Engagement Photo"-->
+            <!--/>-->
 
 
         <android.support.v7.widget.AppCompatButton

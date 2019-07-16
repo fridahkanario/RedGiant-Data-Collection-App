@@ -42,6 +42,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.keredgiantaio.techsavanna.redgiantaio.methods.DoortoDoorResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,7 +60,7 @@ import retrofit2.Callback;
 public class DoorToDoorActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText openingstock, closingstock, comments;
+    EditText openingstock, closingstock, comments, product_focus;
     String routess;
     List<String> list;
     String question;
@@ -91,6 +92,7 @@ public class DoorToDoorActivity extends AppCompatActivity implements ConnectionC
         comments = findViewById(R.id.input_comments);
         btnlogin = findViewById(R.id.btn_login);
         routes = findViewById(R.id.route);
+        product_focus = findViewById(R.id.product_of_focus);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -223,18 +225,19 @@ public class DoorToDoorActivity extends AppCompatActivity implements ConnectionC
             final String closingstockk = closingstock.getText().toString();
             String commentss = comments.getText().toString();
             String routie = routess;
+            String product_focus = this.product_focus.getText().toString();
 
 
             ApiDoorToDoorService service = ApiDoorToDoorClient.getClient().create(ApiDoorToDoorService.class);
             //User user = new User(name, email, password);
 
 
-            Call<DetailsOneResponse> userCall = service.sendRegister(openingstockk, closingstockk, commentss, routie, lat, lon);
+            Call<DoortoDoorResponse> userCall = service.sendRegister(openingstockk, closingstockk, commentss, routie,product_focus, lat, lon);
 
             System.out.println("data outing" + openingstockk + " " + closingstockk + " " + commentss + " " + " " + routie + " " + lat + " " + lon);
-            userCall.enqueue(new Callback<DetailsOneResponse>() {
+            userCall.enqueue(new Callback<DoortoDoorResponse>() {
                 @Override
-                public void onResponse(Call<DetailsOneResponse> call, retrofit2.Response<DetailsOneResponse> response) {
+                public void onResponse(Call<DoortoDoorResponse> call, retrofit2.Response<DoortoDoorResponse> response) {
                     // hidepDialog();
                     //onSignupSuccess();
 
@@ -271,7 +274,7 @@ public class DoorToDoorActivity extends AppCompatActivity implements ConnectionC
                 }
 
                 @Override
-                public void onFailure(Call<DetailsOneResponse> call, Throwable t) {
+                public void onFailure(Call<DoortoDoorResponse> call, Throwable t) {
                     hidepDialog();
                     Log.d("onFailure", t.toString());
                 }

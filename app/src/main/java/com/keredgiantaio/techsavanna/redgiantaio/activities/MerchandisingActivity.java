@@ -42,6 +42,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.keredgiantaio.techsavanna.redgiantaio.methods.MerchandisingResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -196,7 +197,7 @@ public class MerchandisingActivity extends AppCompatActivity implements Connecti
                 R.style.Theme_AppCompat_DayNight_DarkActionBar);
         pDialog.setIndeterminate(true);
         pDialog.setMessage("Sending data...");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         showpDialog();
         // Permissions ok, we get last location
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -226,12 +227,12 @@ public class MerchandisingActivity extends AppCompatActivity implements Connecti
             //User user = new User(name, email, password);
 
 
-            Call<DetailsOneResponse> userCall = service.sendRegister(instockk, outofstockk, actiontakenn, routie, lat, lon);
+            Call<MerchandisingResponse> userCall = service.sendRegister(instockk, outofstockk, actiontakenn, routie, lat, lon);
 
             System.out.println("data outing" + instockk + " " + outofstockk + " " + actiontakenn + " " + " " + routie + " " + lat + " " + lon);
-            userCall.enqueue(new Callback<DetailsOneResponse>() {
+            userCall.enqueue(new Callback<MerchandisingResponse>() {
                 @Override
-                public void onResponse(Call<DetailsOneResponse> call, retrofit2.Response<DetailsOneResponse> response) {
+                public void onResponse(Call<MerchandisingResponse> call, retrofit2.Response<MerchandisingResponse> response) {
                     // hidepDialog();
                     //onSignupSuccess();
 
@@ -268,7 +269,7 @@ public class MerchandisingActivity extends AppCompatActivity implements Connecti
                 }
 
                 @Override
-                public void onFailure(Call<DetailsOneResponse> call, Throwable t) {
+                public void onFailure(Call<MerchandisingResponse> call, Throwable t) {
                     hidepDialog();
                     Log.d("onFailure", t.toString());
                 }

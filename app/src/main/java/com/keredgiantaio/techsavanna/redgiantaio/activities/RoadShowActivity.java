@@ -42,6 +42,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.keredgiantaio.techsavanna.redgiantaio.methods.RoadShowResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +58,7 @@ import retrofit2.Callback;
 public class RoadShowActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText merchandise, crowdsize, comments;
+    EditText merchandise, crowdsize, comments, product_focus;
     String routess;
     List<String> list;
     String question;
@@ -89,6 +90,7 @@ public class RoadShowActivity extends AppCompatActivity implements ConnectionCal
         comments = findViewById(R.id.input_comments);
         btnlogin = findViewById(R.id.btn_login);
         routes = findViewById(R.id.route);
+        product_focus = findViewById(R.id.product_of_focus);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -221,18 +223,19 @@ public class RoadShowActivity extends AppCompatActivity implements ConnectionCal
             final String crowdsizee = crowdsize.getText().toString();
             String commentss = comments.getText().toString();
             String routie = routess;
+            String product_focus = this.product_focus.getText().toString();
 
 
             ApiRoadShowService service = ApiRoadShowClient.getClient().create(ApiRoadShowService.class);
             //User user = new User(name, email, password);
 
 
-            Call<DetailsOneResponse> userCall = service.sendRegister(merchandisee, crowdsizee, commentss, routie, lat, lon);
+            Call<RoadShowResponse> userCall = service.sendRegister(merchandisee, crowdsizee, commentss, routie, product_focus, lat, lon);
 
             System.out.println("data outing" + merchandisee + " " + crowdsizee + " " + commentss + " " + " " + routie + " " + lat + " " + lon);
-            userCall.enqueue(new Callback<DetailsOneResponse>() {
+            userCall.enqueue(new Callback<RoadShowResponse>() {
                 @Override
-                public void onResponse(Call<DetailsOneResponse> call, retrofit2.Response<DetailsOneResponse> response) {
+                public void onResponse(Call<RoadShowResponse> call, retrofit2.Response<RoadShowResponse> response) {
                     // hidepDialog();
                     //onSignupSuccess();
 
@@ -269,7 +272,7 @@ public class RoadShowActivity extends AppCompatActivity implements ConnectionCal
                 }
 
                 @Override
-                public void onFailure(Call<DetailsOneResponse> call, Throwable t) {
+                public void onFailure(Call<RoadShowResponse> call, Throwable t) {
                     hidepDialog();
                     Log.d("onFailure", t.toString());
                 }

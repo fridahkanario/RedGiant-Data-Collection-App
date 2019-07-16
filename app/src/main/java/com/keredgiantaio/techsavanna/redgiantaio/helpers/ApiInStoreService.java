@@ -1,6 +1,7 @@
 package com.keredgiantaio.techsavanna.redgiantaio.helpers;
 
 import com.keredgiantaio.techsavanna.redgiantaio.methods.DetailsOneResponse;
+import com.keredgiantaio.techsavanna.redgiantaio.methods.InstoreResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -11,10 +12,11 @@ public interface ApiInStoreService {
 
     @FormUrlEncoded
     @POST("POST/createinstore.php")
-    Call<DetailsOneResponse> sendRegister(@Field("openingstock") String openingstock,
-                                          @Field("closingstock") String closingstock,
-                                          @Field("comments") String comments,
-                                          @Field("route") String route,
-                                          @Field("lat") String lat,
-                                          @Field("lon") String lon);
+    Call<InstoreResponse> sendRegister(@Field("openingstock") String openingstock,
+                                       @Field("closingstock") String closingstock,
+                                       @Field("comments") String comments,
+                                       @Field("route") String route,
+                                       @Field("lunchtime") String lunchtimes,
+                                       @Field("lat") String lat,
+                                       @Field("lon") String lon);
 }
