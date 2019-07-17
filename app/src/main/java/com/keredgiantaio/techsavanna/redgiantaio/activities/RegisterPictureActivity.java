@@ -1,17 +1,22 @@
 package com.keredgiantaio.techsavanna.redgiantaio.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -40,6 +45,7 @@ public class RegisterPictureActivity extends AppCompatActivity {
     String nameofperson,telephone;
     //edittext for getting the tags input
     EditText editTextTags;
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +56,47 @@ public class RegisterPictureActivity extends AppCompatActivity {
         editTextTags = findViewById(R.id.editTextTags);
         nameofperson=getIntent().getExtras().getString("nameperson");
         telephone=getIntent().getExtras().getString("phone");
+
+
         //checking the permission
         //if the permission is not given we will open setting to add permission
         //else app will not open
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.parse("package:" + getPackageName()));
-            finish();
-            startActivity(intent);
-            return;
+
+            //Ask the user whether they wish to allow the phone permissions
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_AppCompat_DayNight_DarkActionBar);
+            builder.setIcon(android.R.drawable.ic_dialog_alert);
+            builder.setTitle("Phone Permissions");
+            builder.setMessage("You need to Give Permissions  to be able to Upload your Picture")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.parse("package:" + getPackageName()));
+                            finish();
+                            startActivity(intent);
+                            return;
+                        }
+                        })
+             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Toast.makeText(getApplicationContext(), "You cannot Upload a photo without Giving Permissions!!", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
+                    finish();
+                    return;
+                }
+            });
+            AlertDialog alertdialog = builder.create();
+            //Button positiveButton  = alertdialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            //positiveButton.setTextColor(Color.parseColor("#000000"));
+           // positiveButton.setBackgroundColor(android.R.color.transparent);
+           // Button negativeButton   = alertdialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+            //negativeButton .setTextColor(Color.parseColor("#000000"));
+            //negativeButton .setBackgroundColor(android.R.color.transparent);
+            alertdialog.show();
         }
 
 

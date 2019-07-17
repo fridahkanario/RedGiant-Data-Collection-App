@@ -19,8 +19,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class LoginActivity extends AppCompatActivity {
- EditText input_phone,input_password;
- Button loginbtn;
+    EditText input_phone,input_password;
+    Button loginbtn;
     private ProgressDialog pDialog;
 
     @Override
@@ -36,13 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // checkLogin();
-                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                startActivity(intent);
+                checkLogin();
+
             }
         });
     }
-
 
     private void checkLogin() {
         pDialog = new ProgressDialog(LoginActivity.this,
@@ -75,18 +73,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if(response.body().getSuccess() == 1) {
-                    Toast.makeText(LoginActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "" + response.body().getMessage(), Toast.LENGTH_LONG).show();
 
 
-                                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                                    intent.putExtra("nameofperson",inputpassword);
-                                    intent.putExtra("telephone",inputphone);
-                                    startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    intent.putExtra("nameofperson",inputpassword);
+                    intent.putExtra("telephone",inputphone);
+                    startActivity(intent);
 
 
 
                 }else {
-                    Toast.makeText(LoginActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "" + response.body().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -94,6 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 hidepDialog();
                 Log.d("onFailure", t.toString());
+                Toast.makeText(LoginActivity.this, "Request Failed!!" , Toast.LENGTH_LONG).show();
             }
         });
 
@@ -109,7 +108,4 @@ public class LoginActivity extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
-
-
-
 }
