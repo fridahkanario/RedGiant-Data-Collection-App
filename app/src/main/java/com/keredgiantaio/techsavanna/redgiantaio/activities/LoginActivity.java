@@ -2,6 +2,7 @@ package com.keredgiantaio.techsavanna.redgiantaio.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,19 +20,37 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText input_phone,input_password;
-    Button loginbtn;
+   public static EditText input_phone,input_password;
+    Button loginbtn, register;
     private ProgressDialog pDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         input_phone=findViewById(R.id.input_phone);
         input_password=findViewById(R.id.input_password);
 
+
+
         loginbtn=findViewById(R.id.btn_login);
+        register = findViewById(R.id.btn_register2);
+
+
+
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,11 +73,15 @@ public class LoginActivity extends AppCompatActivity {
         final String inputphone =  input_phone.getText().toString();
         final String inputpassword =  input_password.getText().toString();
 
+
         ApiLoginService service = ApiLoginClient.getClient().create(ApiLoginService.class);
 
         Call<LoginResponse> userCall = service.sendLogin(inputphone, inputpassword);
 
         System.out.println("login file" +inputphone+ "  "+inputpassword);
+
+        SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+        prefs.edit().putString("telephone", inputphone).commit();
 
         userCall.enqueue(new Callback<LoginResponse>() {
             @Override

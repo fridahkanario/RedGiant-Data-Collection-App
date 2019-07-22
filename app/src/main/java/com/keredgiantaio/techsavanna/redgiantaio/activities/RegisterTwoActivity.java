@@ -60,8 +60,8 @@ public class RegisterTwoActivity extends AppCompatActivity {
 
         btnlogin=findViewById(R.id.btn_login);
 
-        nameofperson=getIntent().getExtras().getString("nameofperson");
-        telephone=getIntent().getExtras().getString("telephone");
+        nameofperson=getIntent().getExtras().getString("nameofperson"); //get data from register one activity
+        telephone=getIntent().getExtras().getString("telephone");        //get data from register one activity
         getGender();
         getAge();
         getHeight();

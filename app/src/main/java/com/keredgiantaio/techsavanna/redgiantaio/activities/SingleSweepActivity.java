@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -20,8 +21,9 @@ import java.util.Date;
 
 //To start project depending on the activity chosen
 public class SingleSweepActivity extends AppCompatActivity  {
-    Button startProject;
+    Button startProject, cancel;
 
+    String telephone;
 // private GoogleMap mMap;
 
     /**
@@ -39,70 +41,36 @@ public class SingleSweepActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_sweep);
 
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.x = -20;
+        params.height = 350;
+        params.width = 550;
+        params.y = -10;
 
-//        date = findViewById(R.id.confirm_date);
-//        time = findViewById(R.id.btn_start_Time);
-//
-//      // Show current date and Format
-//        final Date currentdate = Calendar.getInstance().getTime();
-//        SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy ");
-//        final String strDate = formatter.format(currentdate);
-
-
-        //Show current time
-//        Date currentTime = Calendar.getInstance().getTime();
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("hh.mm.ss aa");
-//        final String strTime = dateFormat.format(currentTime);
-//
-
-
-//        date.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(SingleSweepActivity.this, "Today is on " +strDate, Toast.LENGTH_LONG).show();
-//
-//            }
-//        });
-//
-//        time.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Toast.makeText(getApplicationContext(),"Start Time Is :" + strTime, Toast.LENGTH_LONG).show();
-//                //Toast.makeText(SingleSweepActivity.this, "Today is on " +currentdate+strDate, Toast.LENGTH_LONG).show();
-//
-//            }
-//        });
+        this.getWindow().setAttributes(params);
 
         startProject = findViewById(R.id.btn_start);
+        cancel = findViewById(R.id.btn_Cancel);
+
+
+
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dashboard = new Intent(SingleSweepActivity.this, DashboardActivity.class);
+                startActivity(dashboard);
+            }
+        });
 
 
         startProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                if (names.equals("roadshow")) {
-                        Intent intent1 = new Intent(SingleSweepActivity.this, RoadShowActivity.class);
-                        startActivity(intent1);
-                    }
-                else if(names.equals("marketstorm")){
-                    Intent intent2 = new Intent(SingleSweepActivity.this, MarketStormActivity.class);
-                    startActivity(intent2);
-                }
-                else if(names.equals("instore")){
-                    Intent intent2 = new Intent(SingleSweepActivity.this, InStoreActivity.class);
-                    startActivity(intent2);
-                }
-                else if(names.equals("doortodoor")){
-                    Intent intent2 = new Intent(SingleSweepActivity.this, DoorToDoorActivity.class);
-                    startActivity(intent2);
-                }
-                else if (names.equals("merchandising")){
-                    Intent intent3 = new Intent(SingleSweepActivity.this, MerchandisingActivity.class);
-                    startActivity(intent3);
-                } */
 
+                telephone=getIntent().getStringExtra("telephone");
+                //new Intent().putExtra("telephone",telephone);
 
                 Intent campaign = getIntent();
                 String names = campaign.getStringExtra("STRUCTURE_NAME");
@@ -119,6 +87,7 @@ public class SingleSweepActivity extends AppCompatActivity  {
                         break;
                     case "instore":
                         Intent intent_instore = new Intent(SingleSweepActivity.this, InStoreActivity.class);
+                        intent_instore.putExtra("telephone",telephone);
                         startActivity(intent_instore);
                         break;
                     case "doortodoor":

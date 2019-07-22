@@ -26,7 +26,7 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.FirstPageActivity">
+        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,9 +36,10 @@
         <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.RegisterActivity" />
         <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.RegisterTwoActivity" />
         <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.RegisterPictureActivity" />
-        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.LoginActivity" />
+        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.FirstPageActivity" />
         <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.DashboardActivity" />
-        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.SingleSweepActivity" />
+        <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.SingleSweepActivity"
+            android:theme="@style/MyDialogTheme"/>
         <activity android:name="com.keredgiantaio.techsavanna.redgiantaio.activities.Details1Activity" >
             <meta-data
                 android:name="com.google.android.gms.version"

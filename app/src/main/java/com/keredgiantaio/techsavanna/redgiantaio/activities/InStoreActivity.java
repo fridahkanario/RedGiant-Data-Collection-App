@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -15,7 +16,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,11 +54,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+
 //For BAs who are doing In store activities
 public class InStoreActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText openingstock, closingstock, comments, lunchtime;
+    EditText openingstock, closingstock, comments, lunchtime, outletname, baname;
     String routess;
     List<String> list;
     String question;
@@ -80,10 +81,14 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
     private static final int ALL_PERMISSIONS_RESULT = 1011;
 
 
+    String nameofpersonn,telephonee;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_store);
+
 
         openingstock = findViewById(R.id.input_opening_stock);
         closingstock = findViewById(R.id.input_closing_stock);
@@ -91,13 +96,15 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
         comments = findViewById(R.id.input_comments);
         btn_save_instore = findViewById(R.id.btn_save_instore);
         routes = findViewById(R.id.route);
-//        ba_selfie = findViewById(R.id.btn_ba_photo);
-//        engagement_photo = findViewById(R.id.btn_engagement_photo);
+        outletname = findViewById(R.id.input_outlet_name);
+        baname = findViewById(R.id.input_ba_name);
         routes = findViewById(R.id.route);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
         permissionsToRequest = permissionsToRequest(permissions);
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (permissionsToRequest.size() > 0) {
@@ -132,6 +139,7 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
         btn_save_instore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sendData();
             }
         });
@@ -222,36 +230,25 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
 
             lat = Double.toString(location.getLatitude());
             lon = Double.toString(location.getLongitude());
+            final String banames = baname.getText().toString();
+            final String outletnames = outletname.getText().toString();
             final String openingstockk = openingstock.getText().toString();
-//            if(TextUtils.isEmpty(openingstockk)) {
-//                openingstock.setError("Opening Stock is required!");
-//                return;
-//            }
             final String closingstockk = closingstock.getText().toString();
-//            if(TextUtils.isEmpty(closingstockk)) {
-//                closingstock.setError("Closing Stock is required!");
-//                return;
-//            }
             String commentss = comments.getText().toString();
-//            if(TextUtils.isEmpty(commentss)) {
-//                comments.setError("Comments are required!");
-//                return;
-//            }
             String routie = routess;
             String lunchtimes = lunchtime.getText().toString();
-//            if(TextUtils.isEmpty(lunchtimes)) {
-//                lunchtime.setError("lunch time is required!");
-//                return;
-//            }
+            String campaign = "In-Store";
 
+            SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+            String id_user  = prefs.getString("telephone", "UNKNOWN");
 
             ApiInStoreService service = ApiInStoreClient.getClient().create(ApiInStoreService.class);
             //User user = new User(name, email, password);
 
 
-            Call<InstoreResponse> userCall = service.sendRegister(openingstockk, closingstockk, commentss, lunchtimes, routie, lat, lon);
+            Call<InstoreResponse> userCall = service.sendRegister(banames,outletnames,openingstockk, closingstockk, commentss,routie,  lunchtimes, campaign, id_user, lat, lon);
 
-            System.out.println("data outing" + openingstockk + " " + closingstockk + " " + commentss + " " + lunchtime + " " + routie + " " + lat + " " + lon);
+            System.out.println("data outing" + banames + "" + outletnames + "" + openingstockk + " " + closingstockk + " " + commentss + " " + routie + " "  + lunchtime + " " + lat + " " + lon);
             userCall.enqueue(new Callback<InstoreResponse>() {
                 @Override
                 public void onResponse(Call<InstoreResponse> call, retrofit2.Response<InstoreResponse> response) {
@@ -276,9 +273,10 @@ public class InStoreActivity extends AppCompatActivity implements ConnectionCall
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
 
+
                                         Intent intent = new Intent(InStoreActivity.this, DashboardActivity.class);
-//                                    intent.putExtra("nameofperson",nameofpersonn);
-//                                    intent.putExtra("telephone",telephonee);
+                                        intent.putExtra("nameofperson",nameofpersonn);
+                                        intent.putExtra("telephone",telephonee);
                                         startActivity(intent);
 
                                     }

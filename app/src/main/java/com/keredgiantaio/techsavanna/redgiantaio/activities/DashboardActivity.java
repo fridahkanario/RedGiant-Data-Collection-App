@@ -2,6 +2,7 @@ package com.keredgiantaio.techsavanna.redgiantaio.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import retrofit2.Response;
 
 //Fetch data/BA project activities from the database
 //landing page after login
+
+
 public class DashboardActivity extends AppCompatActivity {
     ApiInterfaceSweep apiInterface;
     ProgressBar progressBar;
@@ -40,6 +43,9 @@ public class DashboardActivity extends AppCompatActivity {
     SearchView sv;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+
+    String telephone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,9 @@ public class DashboardActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
+
+        telephone = getIntent().getStringExtra("telephone");
 
         fetchStructures("type", "");
 
@@ -78,18 +87,16 @@ public class DashboardActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
 
-//                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        Object o = adapterView.getItemAtPosition(i);
-//                        String str_text = o.toString();
-//
-//                        System.out.println("text selected"+str_text);
-//                       // PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().putString("sitename", str_text).apply();
-//
-//                        dismiss();
-//                    }
-//                });
+                telephone=getIntent().getStringExtra("telephone");
+
+
+               // Intent intent = new Intent(DashboardActivity.this, SweepSearchAdapter.class);
+                //intent.putExtra("telephone",telephone);
+               // startActivity(intent);
+
+
+
+
             }
 
             @Override

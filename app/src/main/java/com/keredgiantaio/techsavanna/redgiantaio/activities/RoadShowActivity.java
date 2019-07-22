@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -58,7 +59,7 @@ import retrofit2.Callback;
 public class RoadShowActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText merchandise, crowdsize, comments, product_focus;
+    EditText merchandise, crowdsize, comments, product_focus, outletname, baname;;
     String routess;
     List<String> list;
     String question;
@@ -91,6 +92,8 @@ public class RoadShowActivity extends AppCompatActivity implements ConnectionCal
         btnlogin = findViewById(R.id.btn_login);
         routes = findViewById(R.id.route);
         product_focus = findViewById(R.id.product_of_focus);
+        outletname = findViewById(R.id.input_outlet_name);
+        baname = findViewById(R.id.input_ba_name);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -219,18 +222,24 @@ public class RoadShowActivity extends AppCompatActivity implements ConnectionCal
 
             lat = Double.toString(location.getLatitude());
             lon = Double.toString(location.getLongitude());
+            final String banames = baname.getText().toString();
+            final String outletnames = outletname.getText().toString();
             final String merchandisee = merchandise.getText().toString();
             final String crowdsizee = crowdsize.getText().toString();
             String commentss = comments.getText().toString();
             String routie = routess;
             String product_focus = this.product_focus.getText().toString();
+            String campaign = "Road Show";
+
+            SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+            String id_user  = prefs.getString("telephone", "UNKNOWN");
 
 
             ApiRoadShowService service = ApiRoadShowClient.getClient().create(ApiRoadShowService.class);
             //User user = new User(name, email, password);
 
 
-            Call<RoadShowResponse> userCall = service.sendRegister(merchandisee, crowdsizee, commentss, routie, product_focus, lat, lon);
+            Call<RoadShowResponse> userCall = service.sendRegister(banames,outletnames,merchandisee, crowdsizee, commentss, routie, product_focus, campaign, id_user,lat, lon);
 
             System.out.println("data outing" + merchandisee + " " + crowdsizee + " " + commentss + " " + " " + routie + " " + lat + " " + lon);
             userCall.enqueue(new Callback<RoadShowResponse>() {

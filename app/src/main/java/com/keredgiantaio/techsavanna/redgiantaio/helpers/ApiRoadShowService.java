@@ -12,11 +12,15 @@ public interface ApiRoadShowService {
 
     @FormUrlEncoded
     @POST("POST/createroadshow.php")
-    Call<RoadShowResponse> sendRegister(@Field("merchandise") String merchandise,
+    Call<RoadShowResponse> sendRegister(@Field("registeredby") String banames,
+                                        @Field("structure_name") String outletname,
+                                        @Field("merchandise") String merchandise,
                                         @Field("crowdsize") String crowdsize,
                                         @Field("comments") String comments,
                                         @Field("route") String route,
                                         @Field("product_focus") String product_focus,
+                                        @Field("campaign_name") String campaign,
+                                        @Field("id_user") String id_users,
                                         @Field("lat") String lat,
                                         @Field("lon") String lon);
 }

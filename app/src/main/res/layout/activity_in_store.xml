@@ -33,6 +33,42 @@
             android:layout_marginTop="15dp">
 
             <EditText
+                android:id="@+id/input_ba_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="15dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                android:hint="Data Captured By: (BA Name)"
+                android:background="@drawable/bg_edittext"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/input_outlet_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="15dp"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                android:hint="Outlet/Store/Shop Name"
+                android:background="@drawable/bg_edittext"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="15dp">
+
+            <EditText
                 android:id="@+id/input_opening_stock"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -78,7 +114,7 @@
                 android:inputType="text"
                 android:textColor="#fff"
                 android:textColorHint="#fff"
-                android:hint="Lunch Break Out Time"
+                android:hint="Lunch Break Out Time(Time spent on Lunch)"
                 android:background="@drawable/bg_edittext"
                 />
         </android.support.design.widget.TextInputLayout>

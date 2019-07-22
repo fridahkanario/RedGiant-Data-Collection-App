@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -60,7 +61,7 @@ import retrofit2.Callback;
 public class DoorToDoorActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText openingstock, closingstock, comments, product_focus;
+    EditText openingstock, closingstock, comments, product_focus, outletname, baname;
     String routess;
     List<String> list;
     String question;
@@ -93,6 +94,8 @@ public class DoorToDoorActivity extends AppCompatActivity implements ConnectionC
         btnlogin = findViewById(R.id.btn_login);
         routes = findViewById(R.id.route);
         product_focus = findViewById(R.id.product_of_focus);
+        outletname = findViewById(R.id.input_outlet_name);
+        baname = findViewById(R.id.input_ba_name);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -221,18 +224,23 @@ public class DoorToDoorActivity extends AppCompatActivity implements ConnectionC
 
             lat = Double.toString(location.getLatitude());
             lon = Double.toString(location.getLongitude());
+            final String banames = baname.getText().toString();
+            final String outletnames = outletname.getText().toString();
             final String openingstockk = openingstock.getText().toString();
             final String closingstockk = closingstock.getText().toString();
             String commentss = comments.getText().toString();
             String routie = routess;
             String product_focus = this.product_focus.getText().toString();
+            String campaign = "Door to Door Sampling";
+            SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+            String id_user  = prefs.getString("telephone", "UNKNOWN");
 
 
             ApiDoorToDoorService service = ApiDoorToDoorClient.getClient().create(ApiDoorToDoorService.class);
             //User user = new User(name, email, password);
 
 
-            Call<DoortoDoorResponse> userCall = service.sendRegister(openingstockk, closingstockk, commentss, routie,product_focus, lat, lon);
+            Call<DoortoDoorResponse> userCall = service.sendRegister(banames,outletnames,openingstockk, closingstockk, commentss, routie,product_focus, campaign,id_user,lat, lon);
 
             System.out.println("data outing" + openingstockk + " " + closingstockk + " " + commentss + " " + " " + routie + " " + lat + " " + lon);
             userCall.enqueue(new Callback<DoortoDoorResponse>() {

@@ -90,12 +90,6 @@ public class RegisterPictureActivity extends AppCompatActivity {
                 }
             });
             AlertDialog alertdialog = builder.create();
-            //Button positiveButton  = alertdialog.getButton(DialogInterface.BUTTON_POSITIVE);
-            //positiveButton.setTextColor(Color.parseColor("#000000"));
-           // positiveButton.setBackgroundColor(android.R.color.transparent);
-           // Button negativeButton   = alertdialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-            //negativeButton .setTextColor(Color.parseColor("#000000"));
-            //negativeButton .setBackgroundColor(android.R.color.transparent);
             alertdialog.show();
         }
 

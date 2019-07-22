@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -57,7 +58,7 @@ import retrofit2.Callback;
 public class MerchandisingActivity extends AppCompatActivity implements ConnectionCallbacks,
         OnConnectionFailedListener, LocationListener {
     private Spinner routes;
-    EditText instock, outofstock, actiontaken;
+    EditText instock, outofstock, actiontaken,outletname, baname;;
     String routess;
     List<String> list;
     String question;
@@ -89,6 +90,8 @@ public class MerchandisingActivity extends AppCompatActivity implements Connecti
         actiontaken = findViewById(R.id.input_action_taken);
         btnlogin = findViewById(R.id.btn_login);
         routes = findViewById(R.id.route);
+        outletname = findViewById(R.id.input_outlet_name);
+        baname = findViewById(R.id.input_ba_name);
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
 
@@ -217,17 +220,21 @@ public class MerchandisingActivity extends AppCompatActivity implements Connecti
 
             lat = Double.toString(location.getLatitude());
             lon = Double.toString(location.getLongitude());
+            final String banames = baname.getText().toString();
+            final String outletnames = outletname.getText().toString();
             final String instockk = instock.getText().toString();
             final String outofstockk = outofstock.getText().toString();
             String actiontakenn = actiontaken.getText().toString();
             String routie = routess;
-
+            String campaign = "Merchandising";
+            SharedPreferences prefs = getSharedPreferences("MyApp", MODE_PRIVATE);
+            String id_user  = prefs.getString("telephone", "UNKNOWN");
 
             ApiMerchandisingService service = ApiMerchandisingClient.getClient().create(ApiMerchandisingService.class);
             //User user = new User(name, email, password);
 
 
-            Call<MerchandisingResponse> userCall = service.sendRegister(instockk, outofstockk, actiontakenn, routie, lat, lon);
+            Call<MerchandisingResponse> userCall = service.sendRegister(banames,outletnames,instockk, outofstockk, actiontakenn, routie, campaign, id_user,lat, lon);
 
             System.out.println("data outing" + instockk + " " + outofstockk + " " + actiontakenn + " " + " " + routie + " " + lat + " " + lon);
             userCall.enqueue(new Callback<MerchandisingResponse>() {

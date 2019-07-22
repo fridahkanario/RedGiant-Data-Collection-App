@@ -1,7 +1,11 @@
 package com.keredgiantaio.techsavanna.redgiantaio.adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.keredgiantaio.techsavanna.redgiantaio.R;
 import com.keredgiantaio.techsavanna.redgiantaio.activities.RoadShowActivity;
@@ -22,6 +27,9 @@ import java.util.List;
 //To give the search bar functionalities
 
 public class SweepSearchAdapter extends  RecyclerView.Adapter<SweepSearchAdapter.SweepSearchHolder> {
+
+    String telephone = new Intent().getStringExtra("telephone");
+
     private List<Sweep> sweepList;
     private Context contexts;
     private LayoutInflater mInflater;
@@ -52,6 +60,8 @@ public class SweepSearchAdapter extends  RecyclerView.Adapter<SweepSearchAdapter
         holder.startdate.setText(structure.getDate());
         holder.enddate.setText(structure.getClosed_on());
 
+
+
         holder.confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,12 +69,14 @@ public class SweepSearchAdapter extends  RecyclerView.Adapter<SweepSearchAdapter
                    // System.out.println("esthers "+structure.getName());
                     switch(structure.getName()) {
                         case "roadshow":
+
+
                             String roadshow = "roadshow";
                             Intent intent_roadshow = new Intent(contexts, SingleSweepActivity.class);
 
                             intent_roadshow.putExtra("STRUCTURE_NAME", roadshow);
                             intent_roadshow.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                             contexts.startActivity(intent_roadshow);
+                            contexts.startActivity(intent_roadshow);
                                 break;
 
                         case "marketstorm":
@@ -81,6 +93,7 @@ public class SweepSearchAdapter extends  RecyclerView.Adapter<SweepSearchAdapter
                             Intent intent_instore = new Intent(contexts, SingleSweepActivity.class);
 
                             intent_instore.putExtra("STRUCTURE_NAME", instore);
+                           intent_instore.putExtra("telephone", telephone);
                             intent_instore.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             contexts.startActivity(intent_instore);
                             break;
